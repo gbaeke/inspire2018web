@@ -98,7 +98,7 @@
                 .then(function(response){
                     var oldMessages=response.data;
                     console.log(oldMessages);
-                    oldMessages.forEach(function(oldMessage){
+                    oldMessages.reverse().forEach(function(oldMessage){
                       newMessage(oldMessage);
                     });
                 });
