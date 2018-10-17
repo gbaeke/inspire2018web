@@ -30,7 +30,7 @@
         <div>Connecting...</div>
       </div>
       <div class="col-sm" v-if="!ready">
-        <div>Waiting for tweets...<vue-simple-spinner size="massive" /></div>
+        <div>Waiting for tweets...<vue-simple-spinner size="medium" /></div>
       </div>
     </div>
     <div v-if="ready">
@@ -92,6 +92,16 @@
     //   alert("No username entered. Reload page and try again.");
     //   throw "No username entered";
     // }
+    
+    // load older data
+    axios.get('https://xylosinspire2018.azurewebsites.net/api/LastTweets')
+                .then(function(response){
+                    var oldMessages=response.data;
+                    console.log(oldMessages);
+                    oldMessages.forEach(function(oldMessage){
+                      newMessage(oldMessage);
+                    });
+                });
 
     getConnectionInfo().then(info => {
       // make compatible with old and new SignalRConnectionInfo
